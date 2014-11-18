@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Soudea's GeoJSON Project</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+
+</head>
+<body>
+  <div id="sideBar">
+  	<h1>Soudea's GeoJSON Project</h1>
+  	<p>While I'm less than thrilled with the outcome of this map, I did learn how to create GeoJSON objects using open data from the city of Chicago. The data I downloaded from data.cityofchicago included longitude and latitudes for many, but not all, of the points. This became important after I brought the data into open Refine (formerly known as Google Refine). I filtered the data to include results for just October 2014 and then used the templating tool to turn them into GeoJSON objects. This was easy because every location was a point and not a polygon, so I didn't have to add a data column for what type each "feature" was.</p>
+
+  	<p>After validating my GeoJSON using geojsonlint.com, I was excited to plot my data. After hours of frustration I learned that the GeoJSON file would not work if there were any features that did not have a latitude and longitude. Because of the sensitive nature of crime-related information, the Chicago data did not include locations for some crimes. After removing all the row with "null" locations, I retemplated my data and... <i>Voila!</i> It worked!.</p>
+
+  	<p>I attempted to create my own basemap in TileMill. An image is included in this github repo (Chicago-cemeteries-crime). That map includes the cemteries within Chicago city limits as black polygons inside of a white-filled Chicago. All land outside of Chicago city limits is gray. I originally wanted to see if any October crimes happened in cemeteries, but technical difficulties has crushed my creepy dreams. However, the geoJSONs I created (using geojson.io) for the cemteries are also available in the repo.</p>  
+  </div>
+  <div id="map"></div> 
+  <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="js/script.js"></script> 
+</body>
+</html>
