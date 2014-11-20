@@ -7,6 +7,11 @@ L.tileLayer('http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png', {
     maxZoom: 18
 }).addTo(map);
 
+//ajax method to get geojson
+
+//var cemeteriesGeoJSON = new L.geojson.AJAX("cemeteries.geojson", {});
+//cemeteriesGeoJSON.addTo(map);
+
 //load external geoJSON
 $.getJSON('october.geojson',function(data){
 	var geojsonLayer = L.geoJson(data.features, {
@@ -23,6 +28,34 @@ $.getJSON('october.geojson',function(data){
 			}
   }).addTo(map);
 
+$.getJSON('cemeteries.geojson',function(data){
+        window.data = data;
+        var cemetery = L.geoJson(data.features, {
+                style: {
+                	stroke: false,
+                    fillColor: "black",
+                    opacity: .9
+                }
+  }).addTo(map);
+});
+
+/*var cemetery = new L.geoJson();
+cemetery.addTo(map);
+
+$.ajax({
+dataType: "json",
+url: "cemeteries.geojson",
+success: function(data) {
+    $(data.features).each(function(key, data) {
+        cemetery.addData(data);
+    });
+}
+}).error(function() {});
+
+cemetery.setStyle({
+	fill: true,
+	fillColor: "#000"
+});*/
 	/*$('.sideBarItem')
 	.mouseenter(function(){
 		$(this).toggleClass('highlight');
